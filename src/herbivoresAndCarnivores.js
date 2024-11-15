@@ -1,11 +1,14 @@
 'use strict';
 
+const DEFAULT_HEALTH = 100;
+const BITE_DAMAGE = 50;
+
 class Animal {
   static alive = [];
 
   constructor(name) {
     this.name = name;
-    this.health = 100;
+    this.health = DEFAULT_HEALTH;
 
     Animal.alive.push(this);
   }
@@ -31,7 +34,7 @@ class Herbivore extends Animal {
 class Carnivore extends Animal {
   bite(target) {
     if (target instanceof Herbivore && !target.hidden && target.health > 0) {
-      target.health -= 50;
+      target.health -= BITE_DAMAGE;
       target.checkHealth();
     }
   }
